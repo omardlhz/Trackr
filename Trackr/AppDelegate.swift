@@ -16,6 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Change selected tab item color to pink.
+        
+        UITabBar.appearance().tintColor = UIColor(red:0.9, green:0.27, blue:0.52, alpha:1.0);
+        
         return true
     }
 
