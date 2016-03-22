@@ -7,13 +7,16 @@
 //
 
 import UIKit
+import Alamofire
 
 
-class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UISearchBarDelegate {
     
     @IBOutlet var searchTv: UITableView!
     
     var searchController: UISearchController!
+    var songs = [Song]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,14 +68,63 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
         searchController.searchBar.placeholder = "Search for a song, artist or album..."
         searchController.searchBar.sizeToFit()
         searchController.searchBar.barTintColor = UIColor.whiteColor()
+        searchController.searchBar.delegate = self
         searchController.searchBar.tintColor = UIColor(red:0.9, green:0.27, blue:0.52, alpha:1.0)
+        searchController.dimsBackgroundDuringPresentation = false
         
         searchTv.tableHeaderView = searchController.searchBar
     }
     
     
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        
+        let searchArray = searchBar.text!.componentsSeparatedByString(" ")
+        let fString:String! = searchArray.joinWithSeparator("+")
+        
+        searchSong(fString)
+        
+        let artUrl = "http://itunes.apple.com/search?term=" + fString + "&entity=musicArtist"
+        let albUrl = "http://itunes.apple.com/search?term=" + fString + "&entity=album"
+        
+        
+        
+    }
     
+    
+    func searchSong(param:String){
+        
+        let songUrl = "http://itunes.apple.com/search?term=" + param + "&entity=song"
 
+        Alamofire.request(.GET, songUrl) .responseJSON { response in
+            
+            if let resultJSON = response.result.value{
+                
+                for song in resultJSON["results"] as! NSMutableArray{
+                    
+                    let name = song["trackName"] as! String
+                    let artist = song["artistName"] as! String
+                    let artwork = song["artworkUrl100"] as! String
+                    
+                    self.songs.append(Song(name: name, artist: artist, artwork: artwork))
+                    
+                }
+                
+            }
+            else{
+                
+                let errorAlert = UIAlertController(title: "Error", message: "Could not connect to server. Please check internet connection.", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                let okButton = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                errorAlert.addAction(okButton)
+                self.presentViewController(errorAlert, animated: true, completion: nil)
+                
+            }
+            
+        }
+        
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
