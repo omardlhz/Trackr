@@ -15,9 +15,7 @@
 		A89FA4A71C9C682300FE8C75 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A89FA4A51C9C682300FE8C75 /* LaunchScreen.storyboard */; };
 		A89FA4B21C9C682300FE8C75 /* TrackrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89FA4B11C9C682300FE8C75 /* TrackrTests.swift */; };
 		A89FA4BD1C9C682300FE8C75 /* TrackrUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89FA4BC1C9C682300FE8C75 /* TrackrUITests.swift */; };
-		A8E1C4901C9D4E9400D3200A /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E1C48F1C9D4E9400D3200A /* ApiKeys.swift */; };
 		A8F9BEA51C9CCFC1006D1DB9 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A8F9BEA41C9CCFC1006D1DB9 /* .gitignore */; };
-		A8F9BEA91C9D1359006D1DB9 /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A8F9BEA81C9D1359006D1DB9 /* ApiKeys.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,9 +52,7 @@
 		A89FA4B81C9C682300FE8C75 /* TrackrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrackrUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A89FA4BC1C9C682300FE8C75 /* TrackrUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackrUITests.swift; sourceTree = "<group>"; };
 		A89FA4BE1C9C682300FE8C75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A8E1C48F1C9D4E9400D3200A /* ApiKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApiKeys.swift; path = Trackr/ApiKeys.swift; sourceTree = "<group>"; };
 		A8F9BEA41C9CCFC1006D1DB9 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		A8F9BEA81C9D1359006D1DB9 /* ApiKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,8 +83,6 @@
 		A89FA48E1C9C682300FE8C75 = {
 			isa = PBXGroup;
 			children = (
-				A8E1C48F1C9D4E9400D3200A /* ApiKeys.swift */,
-				A8F9BEA81C9D1359006D1DB9 /* ApiKeys.plist */,
 				A8F9BEA41C9CCFC1006D1DB9 /* .gitignore */,
 				A89FA4991C9C682300FE8C75 /* Trackr */,
 				A89FA4B01C9C682300FE8C75 /* TrackrTests */,
@@ -249,7 +243,6 @@
 				A89FA4A71C9C682300FE8C75 /* LaunchScreen.storyboard in Resources */,
 				A89FA4A41C9C682300FE8C75 /* Assets.xcassets in Resources */,
 				A89FA4A21C9C682300FE8C75 /* Main.storyboard in Resources */,
-				A8F9BEA91C9D1359006D1DB9 /* ApiKeys.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +269,6 @@
 			files = (
 				A80056EC1C9CA4DE00CDAECF /* UIScrollView+EmptyDataSet.m in Sources */,
 				A89FA49B1C9C682300FE8C75 /* AppDelegate.swift in Sources */,
-				A8E1C4901C9D4E9400D3200A /* ApiKeys.swift in Sources */,
 				A80056EE1C9CA53000CDAECF /* SearchTab.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
