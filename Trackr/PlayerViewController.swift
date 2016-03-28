@@ -57,7 +57,9 @@ class PlayerViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         
-        let imageData = NSData(contentsOfURL: musicPlayer.sharedInstance.getCoverImage("player"))
+        let songMeta = musicPlayer.sharedInstance.getSong()
+        
+        let imageData = NSData(contentsOfURL: musicPlayer.sharedInstance.getCoverImage(songMeta,size: "player"))
         
         if imageData != nil{
             
@@ -65,13 +67,9 @@ class PlayerViewController: UIViewController {
             
         }
         
+        titleLabel.text = songMeta.name
         
-        let songMeta = musicPlayer.sharedInstance.getMeta()
-        
-        titleLabel.text = songMeta.0
-        
-        artistLabel.text = songMeta.1
-        
+        artistLabel.text = songMeta.artist
         
     }
     

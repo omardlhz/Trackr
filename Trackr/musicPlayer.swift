@@ -44,7 +44,7 @@ class musicPlayer{
     func playSong(song: Song){
         
         if timer != nil{
-            
+
             timer.invalidate()
             
         }
@@ -82,7 +82,6 @@ class musicPlayer{
             }
             
             timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "finishPlaying", userInfo: nil, repeats: true)
-            
             
         }
         else{
@@ -130,13 +129,13 @@ class musicPlayer{
     
     Returns the NSURL of the cover image.
     */
-    func getCoverImage(size:String) -> NSURL{
+    func getCoverImage(song:Song, size:String) -> NSURL{
         
-        let artworkUrl = currentSong.artwork
+        let artworkUrl = song.artwork
         
         if size == "small" {
             
-            let smallUrl = artworkUrl.stringByReplacingOccurrencesOfString("100x100", withString: "50x50")
+            let smallUrl = artworkUrl.stringByReplacingOccurrencesOfString("100x100", withString: "60x60")
             
             return NSURL(string: smallUrl)!
             
@@ -157,12 +156,11 @@ class musicPlayer{
     
     
     /*
-    Returns the metadata (Name and artist) of the
-    song that is currently playing.
+    Returns the current song Data.
     */
-    func getMeta() -> (String, String) {
+    func getSong() -> Song {
         
-        return (currentSong.name, currentSong.artist)
+        return currentSong
         
     }
     
@@ -174,16 +172,14 @@ class musicPlayer{
     
     func resumePlaying(){
         
-        let nc = NSNotificationCenter.defaultCenter()
-        nc.postNotificationName("songplaying", object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName("songplaying", object: nil)
         
         mPlayer.play()
     }
     
     func pausePlaying(){
         
-        let nc = NSNotificationCenter.defaultCenter()
-        nc.postNotificationName("pauseplaying", object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName("pauseplaying", object: nil)
         
         mPlayer.pause()
         
@@ -192,17 +188,17 @@ class musicPlayer{
     dynamic func finishPlaying(){
         
         
-        if mPlayer.currentItem != nil{
+        if mPlayer.currentItem != nil && self.currentSong.duration != nil{
             
             print("currentTime:",mPlayer.currentTime().seconds)
             print("duration:", self.currentSong.duration)
             
             if Int(self.mPlayer.currentTime().seconds) >= self.currentSong.duration{
                 
-                print("se acabo")
-                
                 mPlayer = AVPlayer()
                 timer.invalidate()
+                
+                NSNotificationCenter.defaultCenter().postNotificationName("SongFinishPlaying", object: nil)
                 
             }
             

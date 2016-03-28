@@ -173,8 +173,37 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
         
         cell.nameLabel.text = songs[indexPath.row].name
         cell.artistLabel.text = songs[indexPath.row].artist
+        cell.songAction.tag = indexPath.row
+        cell.songAction.addTarget(self, action: "showAction:", forControlEvents: UIControlEvents.TouchUpInside)
         
         return cell
+    }
+    
+    func showAction(sender:UIButton){
+        
+        
+        let alertView = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+
+        let imageData = NSData(contentsOfURL: musicPlayer.sharedInstance.getCoverImage(songs[sender.tag], size: "small"))
+        
+        let coverImg = UIImageView(frame: CGRect(x: 10, y: 10, width: 60, height: 60))
+        coverImg.contentMode = UIViewContentMode.Left
+        if imageData != nil{ coverImg.image = UIImage(data: imageData!) }
+       
+        
+        let metaVC = UIViewController()
+        metaVC.view.backgroundColor = UIColor.redColor()
+        metaVC.view.addSubview(coverImg)
+        
+        alertView.setValue(metaVC, forKey: "contentViewController")
+        
+        let destroyAction = UIAlertAction(title: "Destroy", style: .Destructive) { (action) in
+            print(action)
+        }
+        alertView.addAction(destroyAction)
+        
+        self.presentViewController(alertView, animated: true, completion: nil)
+        
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
@@ -182,7 +211,6 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
         let song = songs[indexPath.row]
         
         musicPlayer.sharedInstance.playSong(song)
-        
         
             
     }
