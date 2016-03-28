@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A80056EC1C9CA4DE00CDAECF /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = A80056EB1C9CA4DE00CDAECF /* UIScrollView+EmptyDataSet.m */; };
 		A80056EE1C9CA53000CDAECF /* SearchTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80056ED1C9CA53000CDAECF /* SearchTab.swift */; };
+		A81B094B1CA4830F00E251AD /* musicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81B094A1CA4830F00E251AD /* musicPlayer.swift */; };
 		A89FA49B1C9C682300FE8C75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89FA49A1C9C682300FE8C75 /* AppDelegate.swift */; };
 		A89FA4A21C9C682300FE8C75 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A89FA4A01C9C682300FE8C75 /* Main.storyboard */; };
 		A89FA4A71C9C682300FE8C75 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A89FA4A51C9C682300FE8C75 /* LaunchScreen.storyboard */; };
@@ -16,6 +17,8 @@
 		A89FA4BD1C9C682300FE8C75 /* TrackrUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89FA4BC1C9C682300FE8C75 /* TrackrUITests.swift */; };
 		A8E8A1991CA1CF0000264A27 /* song.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8A1981CA1CF0000264A27 /* song.swift */; };
 		A8E8A19B1CA1D55900264A27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8E8A19A1CA1D55900264A27 /* Assets.xcassets */; };
+		A8E8A19D1CA1E58800264A27 /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8A19C1CA1E58800264A27 /* SongCell.swift */; };
+		A8F60C311CA6606D00B97651 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F60C301CA6606D00B97651 /* PlayerViewController.swift */; };
 		A8F9BEA51C9CCFC1006D1DB9 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A8F9BEA41C9CCFC1006D1DB9 /* .gitignore */; };
 		B4853A1B79468B2787D32B04 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BC9A5403E1E4406D0D4B363 /* Pods.framework */; };
 /* End PBXBuildFile section */
@@ -44,6 +47,7 @@
 		A80056EA1C9CA4DE00CDAECF /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
 		A80056EB1C9CA4DE00CDAECF /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
 		A80056ED1C9CA53000CDAECF /* SearchTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTab.swift; sourceTree = "<group>"; };
+		A81B094A1CA4830F00E251AD /* musicPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = musicPlayer.swift; sourceTree = "<group>"; };
 		A89FA4971C9C682300FE8C75 /* Trackr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trackr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A89FA49A1C9C682300FE8C75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A89FA4A11C9C682300FE8C75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -57,6 +61,8 @@
 		A89FA4BE1C9C682300FE8C75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8E8A1981CA1CF0000264A27 /* song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = song.swift; sourceTree = "<group>"; };
 		A8E8A19A1CA1D55900264A27 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A8E8A19C1CA1E58800264A27 /* SongCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
+		A8F60C301CA6606D00B97651 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		A8F9BEA41C9CCFC1006D1DB9 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		CF7E880C5B48FEF7160B11C7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				A8E8A19A1CA1D55900264A27 /* Assets.xcassets */,
+				A8F60C301CA6606D00B97651 /* PlayerViewController.swift */,
 				A80056ED1C9CA53000CDAECF /* SearchTab.swift */,
 				A8E8A1981CA1CF0000264A27 /* song.swift */,
 				A80056EA1C9CA4DE00CDAECF /* UIScrollView+EmptyDataSet.h */,
@@ -132,6 +139,8 @@
 				A89FA4A51C9C682300FE8C75 /* LaunchScreen.storyboard */,
 				A89FA4A81C9C682300FE8C75 /* Info.plist */,
 				A80056E91C9CA4DE00CDAECF /* Trackr-Bridging-Header.h */,
+				A8E8A19C1CA1E58800264A27 /* SongCell.swift */,
+				A81B094A1CA4830F00E251AD /* musicPlayer.swift */,
 			);
 			path = Trackr;
 			sourceTree = "<group>";
@@ -233,6 +242,11 @@
 				TargetAttributes = {
 					A89FA4961C9C682300FE8C75 = {
 						CreatedOnToolsVersion = 7.2.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					A89FA4AC1C9C682300FE8C75 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -345,9 +359,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A81B094B1CA4830F00E251AD /* musicPlayer.swift in Sources */,
 				A8E8A1991CA1CF0000264A27 /* song.swift in Sources */,
 				A80056EC1C9CA4DE00CDAECF /* UIScrollView+EmptyDataSet.m in Sources */,
+				A8F60C311CA6606D00B97651 /* PlayerViewController.swift in Sources */,
 				A89FA49B1C9C682300FE8C75 /* AppDelegate.swift in Sources */,
+				A8E8A19D1CA1E58800264A27 /* SongCell.swift in Sources */,
 				A80056EE1C9CA53000CDAECF /* SearchTab.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

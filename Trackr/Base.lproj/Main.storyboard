@@ -123,48 +123,124 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="songId" rowHeight="56" id="Mvq-a7-hLj">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="songId" rowHeight="56" id="Mvq-a7-hLj" customClass="SongCell" customModule="Trackr" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="334" width="320" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mvq-a7-hLj" id="4g0-iO-e9s">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ucx-LP-68N">
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XF1-v6-gmB">
+                                            <rect key="frame" x="284" y="17" width="28" height="22"/>
+                                            <state key="normal" image="more"/>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="ucx-LP-68N">
                                             <rect key="frame" x="19" y="8" width="257" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1z-yD-qXK">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="r1z-yD-qXK">
                                             <rect key="frame" x="19" y="26" width="257" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XF1-v6-gmB">
-                                            <rect key="frame" x="284" y="17" width="28" height="22"/>
-                                            <state key="normal" image="more"/>
-                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="artistLabel" destination="r1z-yD-qXK" id="XMg-zm-voz"/>
+                                    <outlet property="nameLabel" destination="ucx-LP-68N" id="baO-4V-jPT"/>
+                                    <outlet property="songAction" destination="XF1-v6-gmB" id="Ypa-YG-i4V"/>
+                                    <segue destination="snh-Ti-eoJ" kind="modal" id="sNC-5f-XSV"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
                         <connections>
                             <outlet property="dataSource" destination="MJE-pO-1iQ" id="9yK-pB-9u0"/>
-                            <outlet property="delegate" destination="MJE-pO-1iQ" id="sEa-XJ-J7C"/>
+                            <outlet property="delegate" destination="MJE-pO-1iQ" id="hyY-u0-Q2Q"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Search" id="M8h-Nt-37q"/>
                     <connections>
                         <outlet property="searchTv" destination="lgC-2K-FPH" id="yCs-8D-B6g"/>
-                        <outlet property="tableView" destination="lgC-2K-FPH" id="Zgf-FY-XN7"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KSg-FX-c0x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="934" y="-17"/>
+            <point key="canvasLocation" x="855" y="-17"/>
+        </scene>
+        <!--Player View Controller-->
+        <scene sceneID="HFL-FV-WX9">
+            <objects>
+                <viewController id="snh-Ti-eoJ" customClass="PlayerViewController" customModule="Trackr" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="g1B-lH-xcT"/>
+                        <viewControllerLayoutGuide type="bottom" id="0Yy-vl-RkS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CWs-zT-aRs">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0G5-wW-DA8">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LM8-dP-sK0">
+                                <rect key="frame" x="20" y="28" width="30" height="30"/>
+                                <state key="normal" image="cancel"/>
+                                <connections>
+                                    <action selector="closeButton:" destination="snh-Ti-eoJ" eventType="touchUpInside" id="a3C-IF-NkW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Si-bL-Uhq">
+                                <rect key="frame" x="270" y="28" width="30" height="30"/>
+                                <state key="normal" image="Queue"/>
+                            </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="y5S-Gx-thz">
+                                <rect key="frame" x="0.0" y="318" width="320" height="2"/>
+                                <color key="tintColor" red="1" green="0.25696904005874177" blue="0.83806236778674648" alpha="1" colorSpace="calibratedRGB"/>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Song Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Ryl-mc-njK">
+                                <rect key="frame" x="20" y="330" width="280" height="29"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Song Artist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="vbm-te-V26">
+                                <rect key="frame" x="20" y="361" width="280" height="22"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1mx-bg-eub">
+                                <rect key="frame" x="134" y="394" width="53" height="82"/>
+                                <state key="normal" image="playButton"/>
+                                <connections>
+                                    <action selector="playButton:" destination="snh-Ti-eoJ" eventType="touchUpInside" id="wl8-Mq-ukr"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IXj-UO-kgS">
+                                <rect key="frame" x="195" y="417" width="45" height="36"/>
+                                <state key="normal" image="nextButton"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hoq-8y-RRu">
+                                <rect key="frame" x="75" y="417" width="51" height="36"/>
+                                <state key="normal" image="nextButton"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="artistLabel" destination="vbm-te-V26" id="8W7-o5-hQ9"/>
+                        <outlet property="coverImage" destination="0G5-wW-DA8" id="T9p-HO-t6d"/>
+                        <outlet property="playButton" destination="1mx-bg-eub" id="9mn-zt-dre"/>
+                        <outlet property="titleLabel" destination="Ryl-mc-njK" id="ByW-Db-gR0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wxu-D4-zcS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1408" y="305"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="sRP-kF-e13">
@@ -183,7 +259,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fdF-8P-umA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1654" y="-292"/>
+            <point key="canvasLocation" x="1408" y="-326"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="chF-ib-zQq">
@@ -206,6 +282,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Queue" width="33" height="32"/>
+        <image name="cancel" width="30" height="30"/>
         <image name="more" width="16" height="16"/>
+        <image name="nextButton" width="45" height="36"/>
+        <image name="playButton" width="50" height="82"/>
     </resources>
 </document>

@@ -1,16 +1,19 @@
-//
-//  SearchTab.swift
-//  Trackr
-//
-//  Created by Omar Dlhz on 3/18/16.
-//  Copyright © 2016 Omar De La Hoz. All rights reserved.
-//
+/*
+  SearchTab.swift
+  Trackr
+  
+  ViewController for seach tab. Used to search
+  for songs, artist and albums in the same tab.
+
+  Created by Omar Dlhz on 3/18/16.
+  Copyright © 2016 Omar De La Hoz. All rights reserved.
+*/
 
 import UIKit
 import Alamofire
 
 
-class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UISearchBarDelegate {
+class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UISearchBarDelegate{
     
     @IBOutlet var searchTv: UITableView!
     
@@ -34,13 +37,30 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
         
     }
     
-    //Message when view is empty.
+    override func viewWillAppear(animated: Bool) {
+        if musicPlayer.sharedInstance.loadedSong(){
+            print("hay cancion")
+        }
+        else{
+            print("no hay")
+        }
+    }
     
+    
+    /*
+    Title for when the view is empty.
+    
+    - It should "Welcome to Trackr".
+    - scrollView : The view in which this info is shown.
+    
+    */
     func titleForEmptyDataSet(scrollView: UIScrollView!) -> NSAttributedString! {
         let str = "Welcome to Trackr"
         let attrs = [NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)]
         return NSAttributedString(string: str, attributes: attrs)
     }
+    
+    
     
     func imageForEmptyDataSet(scrollView: UIScrollView!) -> UIImage! {
         return UIImage(named: "Logo")
@@ -86,12 +106,14 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
         let artUrl = "http://itunes.apple.com/search?term=" + fString + "&entity=musicArtist"
         let albUrl = "http://itunes.apple.com/search?term=" + fString + "&entity=album"
         
-        
-        
     }
     
+  
     
     func searchSong(param:String){
+        
+        songs.removeAll()
+
         
         let songUrl = "http://itunes.apple.com/search?term=" + param + "&entity=song"
 
@@ -109,6 +131,8 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
                     
                 }
                 
+                self.searchTv.reloadData()
+
             }
             else{
                 
@@ -134,23 +158,34 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
+    
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return songs.count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCellWithIdentifier("songId", forIndexPath: indexPath) as! SongCell
+        
+        cell.nameLabel.text = songs[indexPath.row].name
+        cell.artistLabel.text = songs[indexPath.row].artist
+        
         return cell
     }
-    */
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        
+        let song = songs[indexPath.row]
+        
+        musicPlayer.sharedInstance.playSong(song)
+        
+        
+            
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -187,14 +222,16 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        
     }
-    */
+
 
 }
