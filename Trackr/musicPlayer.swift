@@ -20,6 +20,7 @@ class musicPlayer{
     private var mPlayer = AVPlayer()
     private var currentSong:Song!
     private var timer:NSTimer!
+    private var currentTime:Double = 0
     
     
     class var sharedInstance: musicPlayer {
@@ -31,66 +32,54 @@ class musicPlayer{
             
         }
         dispatch_once(&Static.token){
+            
             Static.instance = musicPlayer()
-        }
-        
-        return Static.instance!
-        
-        
-        
-    }
-    
-    
-    func playSong(song: Song){
-        
-        if timer != nil{
-
-            timer.invalidate()
-            
-        }
-        
-        currentSong = song
-        
-        
-        if(song.adUrl == nil){
-            
-            retrieveURL(song) { (result) in
-                
-                if result.0 != nil{
-                    
-                    
-                    self.mPlayer = AVPlayer(URL: result.0)
-                    self.currentSong.duration = result.1
-                    self.mPlayer.play()
-                    let nc = NSNotificationCenter.defaultCenter()
-                    nc.postNotificationName("songplaying", object: nil)
-                    
-                }
-            }
             
             do {
                 try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-                print("AVAudioSession Category Playback OK")
                 do {
                     try AVAudioSession.sharedInstance().setActive(true)
-                    print("AVAudioSession is Active")
                 } catch let error as NSError {
                     print(error.localizedDescription)
                 }
             } catch let error as NSError {
                 print(error.localizedDescription)
             }
+        }
+        
+        return Static.instance!
+    }
+    
+    
+    func playSong(song: Song){
+        
+        if timer != nil{ timer.invalidate() }
+        
+        currentSong = song
+        
+        if(song.adUrl == nil){
             
-            timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "finishPlaying", userInfo: nil, repeats: true)
-            
+            retrieveURL(song) { (result) in
+                
+                if result.link != nil{
+                    
+                    self.mPlayer = AVPlayer(URL: result.link)
+                    self.currentSong.duration = result.duration
+                    self.mPlayer.play()
+                    NSNotificationCenter.defaultCenter().postNotificationName("songplaying", object: nil)
+                }
+            }
         }
         else{
             
             self.mPlayer = AVPlayer(URL: song.adUrl)
             self.mPlayer.play()
             
-            
         }
+        
+        
+        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "timeChange", userInfo: nil, repeats: true)
+        
     }
  
     
@@ -100,7 +89,7 @@ class musicPlayer{
     
     Returns a NSURL which is the stream url.
     */
-    func retrieveURL(song: Song, completionHandler: (result: NSURL!, Int!) -> ()) -> (){
+    func retrieveURL(song: Song, completionHandler: (result: (link: NSURL!, duration: Int!)) -> ()) -> (){
         
         let metadata = song.name + "%20" + song.artist + "%20audio"
         let searchArray = metadata.componentsSeparatedByString(" ")
@@ -116,7 +105,7 @@ class musicPlayer{
                 
                 let duration = resultJSON["duration"] as! Int
                 
-                completionHandler(result: url, duration)
+                completionHandler(result: (link: url, duration: duration))
                 
             }
         }
@@ -164,12 +153,21 @@ class musicPlayer{
         
     }
     
+    
+    /*
+    Checks if there is a song loaded in mPlayer.
+    */
     func loadedSong() -> Bool{
         
         return mPlayer.currentItem != nil
         
     }
     
+    
+    /*
+    Plays song if it has been paused.
+    Posts songplaying notification.
+    */
     func resumePlaying(){
         
         NSNotificationCenter.defaultCenter().postNotificationName("songplaying", object: nil)
@@ -177,6 +175,11 @@ class musicPlayer{
         mPlayer.play()
     }
     
+    
+    /*
+    Pauses song.
+    Posts pauseplaying notification.
+    */
     func pausePlaying(){
         
         NSNotificationCenter.defaultCenter().postNotificationName("pauseplaying", object: nil)
@@ -185,13 +188,32 @@ class musicPlayer{
         
     }
     
-    dynamic func finishPlaying(){
+    
+    /*
+    Returns the player's currentTime and song
+    duration.
+    */
+    func getPlayerTime() -> (current: Double, duration: Double){
         
+        return (current: mPlayer.currentTime().seconds, duration: Double(currentSong.duration))
+    }
+    
+    
+    /*
+    Posts notification when there is a change in time
+    and when the song has ended.
+    
+    Triggered by NSTimer.
+    */
+    dynamic func timeChange(){
         
         if mPlayer.currentItem != nil && self.currentSong.duration != nil{
             
-            print("currentTime:",mPlayer.currentTime().seconds)
-            print("duration:", self.currentSong.duration)
+            if mPlayer.currentTime().seconds != currentTime{
+                
+                currentTime = mPlayer.currentTime().seconds
+                NSNotificationCenter.defaultCenter().postNotificationName("changeInTime", object: nil)
+            }
             
             if Int(self.mPlayer.currentTime().seconds) >= self.currentSong.duration{
                 
@@ -199,13 +221,8 @@ class musicPlayer{
                 timer.invalidate()
                 
                 NSNotificationCenter.defaultCenter().postNotificationName("SongFinishPlaying", object: nil)
-                
             }
-            
         }
-        
     }
-    
- 
     
 }

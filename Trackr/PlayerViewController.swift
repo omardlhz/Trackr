@@ -2,6 +2,7 @@
 //  PlayerViewController.swift
 //  Trackr
 //
+
 //  Created by Omar Dlhz on 3/26/16.
 //  Copyright © 2016 Omar De La Hoz. All rights reserved.
 //
@@ -22,6 +23,12 @@ class PlayerViewController: UIViewController {
     
     @IBOutlet weak var artistLabel: UILabel!
     
+    @IBOutlet weak var songPlayback: UIProgressView!
+    
+    @IBOutlet weak var playBackLabel: UILabel!
+    
+    @IBOutlet weak var remainTimeLabel: UILabel!
+    
     @IBOutlet weak var playButton: UIButton!
     
     @IBAction func playButton(sender: AnyObject) {
@@ -40,8 +47,6 @@ class PlayerViewController: UIViewController {
     }
     
     
-    
-    
     var songPlaying = false;
     
     override func viewDidLoad() {
@@ -50,12 +55,17 @@ class PlayerViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "isPlaying", name: "songplaying", object: nil)
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "isNotPlaying", name: "pauseplaying", object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "timeChange", name: "changeInTime", object: nil)
+        
         // Do any additional setup after loading the view.
     }
     
     
     
     override func viewWillAppear(animated: Bool) {
+        
+        songPlayback.progress = 0
         
         let songMeta = musicPlayer.sharedInstance.getSong()
         
@@ -68,18 +78,22 @@ class PlayerViewController: UIViewController {
         }
         
         titleLabel.text = songMeta.name
-        
         artistLabel.text = songMeta.artist
         
     }
     
 
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    
+    /*
+    Updates the variable songPlaying to true.
+    Sets the image of the playButton to pauseButton.
+    Gets triggered by songplaying notification.
+    */
     func isPlaying(){
         
         songPlaying = true
@@ -87,6 +101,12 @@ class PlayerViewController: UIViewController {
         
     }
     
+    
+    /*
+    Updates the variable songPlaying to false.
+    Sets the image of the playButton to playButton
+    Gets triggered by pauseplaying notification.
+    */
     func isNotPlaying(){
         
         songPlaying = false
@@ -94,15 +114,37 @@ class PlayerViewController: UIViewController {
         
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
+    Updates the progress bar and the time labels.
+    Gets triggered by changeInTime noitification.
     */
+    func timeChange(){
+        
+        let playerTime = musicPlayer.sharedInstance.getPlayerTime()
+        let remainTime = playerTime.duration - playerTime.current
+        
+        let (cM,cS) = convertMinSec(playerTime.current)
+        let (rM,rS) = convertMinSec(remainTime)
+        
+        playBackLabel.text = String(format: "%02d:%02d", cM, cS)
+        remainTimeLabel.text = "-" + String(format: "%02d:%02d", rM, rS)
+        
+        let progress = Float(playerTime.current / playerTime.duration)
+        songPlayback.progress = progress
+        
+    }
+    
+    
+    /*
+    Converts a double in seconds to minutes and seconds.
+    */
+    func convertMinSec(seconds: Double) -> (Int, Int){
+        
+        let minutes = (Int(seconds) % 3600) / 60
+        let seconds = (Int(seconds) % 3600) % 60
+        
+        return (minutes, seconds)
+    }
 
 }
