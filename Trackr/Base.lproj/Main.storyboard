@@ -282,11 +282,15 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="aDL-vU-hsg" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="search" id="uxb-xF-6pR"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sXf-0z-izH">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="sXf-0z-izH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="b9d-Lj-9hk">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="MJE-pO-1iQ" kind="relationship" relationship="rootViewController" id="T3j-N0-cm2"/>
                     </connections>

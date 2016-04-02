@@ -38,12 +38,18 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
     }
     
     override func viewWillAppear(animated: Bool) {
+                
         if musicPlayer.sharedInstance.loadedSong(){
             print("hay cancion")
         }
         else{
             print("no hay")
         }
+        
+        let statusBar = UIApplication.sharedApplication().valueForKey("statusBarWindow")?.valueForKey("statusBar") as? UIView
+        
+        statusBar!.backgroundColor = UIColor.whiteColor()
+        
     }
     
     
@@ -183,24 +189,66 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
         
         
         let alertView = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        alertView.view.tintColor = UIColor(red:0.9, green:0.27, blue:0.52, alpha:1.0)
 
         let imageData = NSData(contentsOfURL: musicPlayer.sharedInstance.getCoverImage(songs[sender.tag], size: "small"))
         
-        let coverImg = UIImageView(frame: CGRect(x: 10, y: 10, width: 60, height: 60))
+        // Song cover image UIView
+        let coverImg = UIImageView(frame: CGRect(x: 10, y: 20, width: 60, height: 60))
         coverImg.contentMode = UIViewContentMode.Left
         if imageData != nil{ coverImg.image = UIImage(data: imageData!) }
        
         
+        //Song title Label
+        let titleLabel = UILabel(frame: CGRectMake(80, 27, 200, 21))
+        titleLabel.textAlignment = .Left
+        titleLabel.text = songs[sender.tag].name
+        titleLabel.font = UIFont.boldSystemFontOfSize(20)
+        
+        
+        //Song artist Label
+        let artistLabel = UILabel(frame: CGRectMake(80, 50, 200, 21))
+        artistLabel.textAlignment = .Left
+        artistLabel.text = songs[sender.tag].artist
+        artistLabel.font = UIFont.systemFontOfSize(16)
+        
+        // Metadata ViewController
         let metaVC = UIViewController()
-        metaVC.view.backgroundColor = UIColor.redColor()
         metaVC.view.addSubview(coverImg)
+        metaVC.view.addSubview(titleLabel)
+        metaVC.view.addSubview(artistLabel)
         
         alertView.setValue(metaVC, forKey: "contentViewController")
         
-        let destroyAction = UIAlertAction(title: "Destroy", style: .Destructive) { (action) in
-            print(action)
-        }
-        alertView.addAction(destroyAction)
+        let nextSong = UIAlertAction(title: "Play Next", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            
+            musicPlayer.sharedInstance.playNext(self.songs[sender.tag])
+            
+        })
+        
+        let queueSong = UIAlertAction(title: "Add to Queue", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            
+            musicPlayer.sharedInstance.addQueue(self.songs[sender.tag])
+            
+        })
+        
+        let addSong = UIAlertAction(title: "Add to Playlist...", style: .Default, handler: {
+            (alert: UIAlertAction!) -> Void in
+            print("Add to playlist")
+        })
+        
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {
+            (alert: UIAlertAction!) -> Void in
+        })
+        
+        alertView.addAction(nextSong)
+        alertView.addAction(queueSong)
+        alertView.addAction(addSong)
+        alertView.addAction(cancelAction)
         
         self.presentViewController(alertView, animated: true, completion: nil)
         
@@ -210,7 +258,7 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
         
         let song = songs[indexPath.row]
         
-        musicPlayer.sharedInstance.playSong(song)
+        musicPlayer.sharedInstance.playNow(song)
         
             
     }

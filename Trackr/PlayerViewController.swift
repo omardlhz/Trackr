@@ -80,6 +80,11 @@ class PlayerViewController: UIViewController {
         titleLabel.text = songMeta.name
         artistLabel.text = songMeta.artist
         
+        let statusBar = UIApplication.sharedApplication().valueForKey("statusBarWindow")?.valueForKey("statusBar") as? UIView
+        
+        statusBar!.backgroundColor = nil
+        
+        
     }
     
 

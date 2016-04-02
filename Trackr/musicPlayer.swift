@@ -21,6 +21,9 @@ class musicPlayer{
     private var currentSong:Song!
     private var timer:NSTimer!
     private var currentTime:Double = 0
+    private var songQueue:[Song] = []
+    private var playedSongs:[Int] = []
+    private var songPointer:Int = 0;
     
     
     class var sharedInstance: musicPlayer {
@@ -145,6 +148,28 @@ class musicPlayer{
     
     
     /*
+    Triggered if a song is tapped.
+    */
+    func playNow(song:Song){
+        
+        if songQueue.count == 0{
+
+            songQueue.append(song)
+            
+        }
+        else{
+            
+            songPointer += 1;
+            songQueue.insert(song, atIndex: songPointer)
+            
+        }
+        
+        playSong(song)
+        
+    }
+    
+    
+    /*
     Returns the current song Data.
     */
     func getSong() -> Song {
@@ -161,6 +186,42 @@ class musicPlayer{
         
         return mPlayer.currentItem != nil
         
+    }
+    
+    
+    /*
+    Play a song after the one that is currently playing,
+    if no song is in Queue, just play it.
+    */
+    func playNext(song: Song){
+        
+        if songQueue.count != 0{
+            
+            songQueue.insert(song, atIndex: songPointer + 1)
+            
+        }
+        else{
+            
+            songQueue.append(song)
+            playSong(song)
+            
+        }
+    }
+    
+    
+    /*
+    Add a song to the end of the queue, if no song is
+    in Queue, just play it.
+    */
+    func addQueue(song: Song){
+        
+        songQueue.append(song)
+        
+        if songQueue.count !=  0{
+            
+            playSong(song)
+            
+        }
     }
     
     
@@ -219,8 +280,14 @@ class musicPlayer{
                 
                 mPlayer = AVPlayer()
                 timer.invalidate()
+                playedSongs.append(songPointer)
                 
-                NSNotificationCenter.defaultCenter().postNotificationName("SongFinishPlaying", object: nil)
+                if(songPointer + 1 <= songQueue.count){
+                    
+                    songPointer++;
+                    playSong(songQueue[songPointer])
+                    
+                }
             }
         }
     }
