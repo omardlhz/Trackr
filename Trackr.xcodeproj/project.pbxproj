@@ -15,6 +15,7 @@
 		A89FA4A71C9C682300FE8C75 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A89FA4A51C9C682300FE8C75 /* LaunchScreen.storyboard */; };
 		A89FA4B21C9C682300FE8C75 /* TrackrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89FA4B11C9C682300FE8C75 /* TrackrTests.swift */; };
 		A89FA4BD1C9C682300FE8C75 /* TrackrUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89FA4BC1C9C682300FE8C75 /* TrackrUITests.swift */; };
+		A8A59B791CB071E9004B1C2D /* MoreAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A59B781CB071E9004B1C2D /* MoreAlertController.swift */; };
 		A8E8A1991CA1CF0000264A27 /* song.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8A1981CA1CF0000264A27 /* song.swift */; };
 		A8E8A19B1CA1D55900264A27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8E8A19A1CA1D55900264A27 /* Assets.xcassets */; };
 		A8E8A19D1CA1E58800264A27 /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8A19C1CA1E58800264A27 /* SongCell.swift */; };
@@ -59,6 +60,7 @@
 		A89FA4B81C9C682300FE8C75 /* TrackrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrackrUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A89FA4BC1C9C682300FE8C75 /* TrackrUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackrUITests.swift; sourceTree = "<group>"; };
 		A89FA4BE1C9C682300FE8C75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8A59B781CB071E9004B1C2D /* MoreAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreAlertController.swift; sourceTree = "<group>"; };
 		A8E8A1981CA1CF0000264A27 /* song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = song.swift; sourceTree = "<group>"; };
 		A8E8A19A1CA1D55900264A27 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A8E8A19C1CA1E58800264A27 /* SongCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				A80056E91C9CA4DE00CDAECF /* Trackr-Bridging-Header.h */,
 				A8E8A19C1CA1E58800264A27 /* SongCell.swift */,
 				A81B094A1CA4830F00E251AD /* musicPlayer.swift */,
+				A8A59B781CB071E9004B1C2D /* MoreAlertController.swift */,
 			);
 			path = Trackr;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				A81B094B1CA4830F00E251AD /* musicPlayer.swift in Sources */,
 				A8E8A1991CA1CF0000264A27 /* song.swift in Sources */,
 				A80056EC1C9CA4DE00CDAECF /* UIScrollView+EmptyDataSet.m in Sources */,
+				A8A59B791CB071E9004B1C2D /* MoreAlertController.swift in Sources */,
 				A8F60C311CA6606D00B97651 /* PlayerViewController.swift in Sources */,
 				A89FA49B1C9C682300FE8C75 /* AppDelegate.swift in Sources */,
 				A8E8A19D1CA1E58800264A27 /* SongCell.swift in Sources */,

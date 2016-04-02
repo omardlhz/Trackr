@@ -217,7 +217,7 @@ class musicPlayer{
         
         songQueue.append(song)
         
-        if songQueue.count !=  0{
+        if songQueue.count ==  0{
             
             playSong(song)
             
