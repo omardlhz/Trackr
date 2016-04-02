@@ -38,6 +38,7 @@ class musicPlayer{
             
             Static.instance = musicPlayer()
             
+            
             do {
                 try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
                 do {
@@ -53,12 +54,13 @@ class musicPlayer{
         return Static.instance!
     }
     
-    
     func playSong(song: Song){
         
         if timer != nil{ timer.invalidate() }
         
         currentSong = song
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("songUpdate", object: nil)
         
         if(song.adUrl == nil){
             
@@ -248,6 +250,28 @@ class musicPlayer{
         mPlayer.pause()
         
     }
+    
+    
+    func backQueue(){
+        
+    }
+    
+    
+    /*
+    Triggered when next song button gets clicked.
+    If there are no songs in queue, nothing happens.
+    */
+    func forwardQueue(){
+        
+        if songPointer + 1 < songQueue.count{
+            
+            songPointer += 1;
+            
+            playSong(songQueue[songPointer])
+            
+        }
+    }
+    
     
     
     /*

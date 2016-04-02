@@ -1,11 +1,11 @@
-//
-//  PlayerViewController.swift
-//  Trackr
-//
+/*
+  PlayerViewController.swift
+  Trackr
 
-//  Created by Omar Dlhz on 3/26/16.
-//  Copyright © 2016 Omar De La Hoz. All rights reserved.
-//
+
+  Created by Omar Dlhz on 3/26/16.
+  Copyright © 2016 Omar De La Hoz. All rights reserved.
+*/
 
 import UIKit
 
@@ -47,38 +47,40 @@ class PlayerViewController: UIViewController {
     }
     
     
+    @IBAction func backButton(sender: AnyObject) {
+        
+        
+        
+    }
+    
+    
+    @IBAction func forwardButton(sender: AnyObject) {
+        
+        musicPlayer.sharedInstance.forwardQueue()
+        
+    }
+    
+    
+    
     var songPlaying = false;
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateView", name: "songUpdate", object: nil)
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "isPlaying", name: "songplaying", object: nil)
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "isNotPlaying", name: "pauseplaying", object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "timeChange", name: "changeInTime", object: nil)
         
-        // Do any additional setup after loading the view.
     }
-    
     
     
     override func viewWillAppear(animated: Bool) {
         
-        songPlayback.progress = 0
-        
-        let songMeta = musicPlayer.sharedInstance.getSong()
-        
-        let imageData = NSData(contentsOfURL: musicPlayer.sharedInstance.getCoverImage(songMeta,size: "player"))
-        
-        if imageData != nil{
-            
-            coverImage.image = UIImage(data: imageData!)
-            
-        }
-        
-        titleLabel.text = songMeta.name
-        artistLabel.text = songMeta.artist
+        updateView()
         
         let statusBar = UIApplication.sharedApplication().valueForKey("statusBarWindow")?.valueForKey("statusBar") as? UIView
         
@@ -116,6 +118,28 @@ class PlayerViewController: UIViewController {
         
         songPlaying = false
         playButton.setImage(UIImage(named: "playButton"), forState: .Normal)
+        
+    }
+    
+    /*
+    Adds the songs metadata to the view.
+    */
+    func updateView(){
+        
+        songPlayback.progress = 0
+        
+        let songMeta = musicPlayer.sharedInstance.getSong()
+        
+        let imageData = NSData(contentsOfURL: musicPlayer.sharedInstance.getCoverImage(songMeta,size: "player"))
+        
+        if imageData != nil{
+            
+            coverImage.image = UIImage(data: imageData!)
+            
+        }
+        
+        titleLabel.text = songMeta.name
+        artistLabel.text = songMeta.artist
         
     }
     

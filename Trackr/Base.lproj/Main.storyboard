@@ -232,13 +232,19 @@
                                     <action selector="playButton:" destination="snh-Ti-eoJ" eventType="touchUpInside" id="wl8-Mq-ukr"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hoq-8y-RRu">
+                                <rect key="frame" x="75" y="425" width="51" height="36"/>
+                                <state key="normal" image="backButton"/>
+                                <connections>
+                                    <action selector="backButton:" destination="snh-Ti-eoJ" eventType="touchUpInside" id="b1Y-d4-tn1"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IXj-UO-kgS">
                                 <rect key="frame" x="195" y="425" width="45" height="36"/>
                                 <state key="normal" image="nextButton"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hoq-8y-RRu">
-                                <rect key="frame" x="75" y="425" width="51" height="36"/>
-                                <state key="normal" image="nextButton"/>
+                                <connections>
+                                    <action selector="forwardButton:" destination="snh-Ti-eoJ" eventType="touchUpInside" id="NyK-IR-4Ma"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -302,6 +308,7 @@
     </scenes>
     <resources>
         <image name="Queue" width="33" height="32"/>
+        <image name="backButton" width="45" height="36"/>
         <image name="cancel" width="30" height="30"/>
         <image name="more" width="16" height="16"/>
         <image name="nextButton" width="45" height="36"/>
