@@ -13,13 +13,14 @@ import UIKit
 import Alamofire
 
 
-class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UISearchBarDelegate{
+class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UISearchBarDelegate, UICollectionViewDelegate, UICollectionViewDataSource{
     
     @IBOutlet var searchTv: UITableView!
     
     var searchController: UISearchController!
     var songs = [Song]()
-    
+    var albums = [Album]()
+    var text = ["A","B","C"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,6 +99,8 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
         searchController.searchBar.tintColor = UIColor(red:0.9, green:0.27, blue:0.52, alpha:1.0)
         searchController.dimsBackgroundDuringPresentation = false
         
+        self.definesPresentationContext = true
+        
         searchTv.tableHeaderView = searchController.searchBar
     }
     
@@ -108,13 +111,46 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
         let fString:String! = searchArray.joinWithSeparator("+")
         
         searchSong(fString)
+        searchAlbum(fString)
         
         let artUrl = "http://itunes.apple.com/search?term=" + fString + "&entity=musicArtist"
-        let albUrl = "http://itunes.apple.com/search?term=" + fString + "&entity=album"
         
     }
     
   
+    func searchAlbum(param:String){
+        
+        Alamofire.request(.GET, "http://itunes.apple.com/search", parameters: ["term": param, "entity": "album"]) .responseJSON { response in
+            
+            if let resultJSON = response.result.value{
+                
+                for song in resultJSON["results"] as! NSMutableArray{
+                    
+                    let albumId = song["collectionId"] as! Int
+                    let name = song["collectionName"] as! String
+                    let artist = song["artistName"] as! String
+                    let artwork = song["artworkUrl100"] as! String
+                    
+                    self.albums.append(Album(albumId: albumId, name: name, artist: artist, artwork: artwork))
+                    
+                }
+                
+                self.searchTv.reloadData()
+                
+            }
+            else{
+                
+                let errorAlert = UIAlertController(title: "Error", message: "Could not connect to server. Please check internet connection.", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                let okButton = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                errorAlert.addAction(okButton)
+                self.presentViewController(errorAlert, animated: true, completion: nil)
+                
+            }
+            
+        }
+    }
+    
     
     func searchSong(param:String){
         
@@ -161,26 +197,90 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        
+        var sections = 0
+        
+        if songs.count > 0{
+            
+            sections = 3
+            
+        }
+        
+        return sections
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        if indexPath.section == 0 {
+            
+            return 154
+            
+        }
+        else{
+            
+            return 55
+            
+        }
+        
     }
     
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return songs.count
+        
+        if section == 2{
+            
+            return songs.count
+            
+        }
+        else{
+            
+            return 1
+            
+        }
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("songId", forIndexPath: indexPath) as! SongCell
         
-        cell.nameLabel.text = songs[indexPath.row].name
-        cell.artistLabel.text = songs[indexPath.row].artist
-        cell.songAction.tag = indexPath.row
-        cell.songAction.addTarget(self, action: "showAction:", forControlEvents: UIControlEvents.TouchUpInside)
-        
-        return cell
+        if indexPath.section == 0 {
+            
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier("albumId",
+                forIndexPath: indexPath)
+            
+            return cell
+            
+        }
+        else {
+            
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier("songId", forIndexPath: indexPath) as! SongCell
+            
+            cell.nameLabel.text = songs[indexPath.row].name
+            cell.artistLabel.text = songs[indexPath.row].artist
+            cell.songAction.tag = indexPath.row
+            cell.songAction.addTarget(self, action: "showAction:", forControlEvents: UIControlEvents.TouchUpInside)
+            
+            return cell
+            
+        }
+    
     }
+    
+    
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if indexPath.section == 0 {
+            
+            guard let tableViewCell = cell as? albumCell else { return }
+            
+            tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.row)
+            
+        }
+    }
+    
+    
     
     func showAction(sender:UIButton){
         
@@ -197,6 +297,33 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
         musicPlayer.sharedInstance.playNow(song)
         
             
+    }
+    
+    func collectionView(collectionView: UICollectionView,
+        numberOfItemsInSection section: Int) -> Int {
+            
+            return albums.count
+    }
+    
+    func collectionView(collectionView: UICollectionView,
+        cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+            
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("albumCl", forIndexPath: indexPath) as! albumCV
+            
+            cell.tag = indexPath.row
+            
+            cell.nameLabel.text = albums[indexPath.row].name
+            cell.artistLabel.text = albums[indexPath.row].artist
+            
+            let imageData = NSData(contentsOfURL: NSURL(string: albums[indexPath.row].artwork)!)
+            
+            if imageData != nil{
+                
+                cell.artworkView.image = UIImage(data: imageData!)
+                
+            }
+            
+            return cell
     }
 
     /*
@@ -242,6 +369,18 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
+        if segue.identifier == "goAlbum"{
+         
+            let destinationViewController = segue.destinationViewController as! AlbumViewController
+            
+            if let cell = sender as? albumCV
+            {
+                
+                let indexPath = cell.tag
+                destinationViewController.albumData = albums[indexPath]
+            }
+            
+        }
         
     }
 
