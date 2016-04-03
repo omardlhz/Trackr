@@ -20,7 +20,6 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
     var searchController: UISearchController!
     var songs = [Song]()
     var albums = [Album]()
-    var text = ["A","B","C"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +49,8 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
         let statusBar = UIApplication.sharedApplication().valueForKey("statusBarWindow")?.valueForKey("statusBar") as? UIView
         
         statusBar!.backgroundColor = UIColor.whiteColor()
+        
+        self.navigationController?.navigationBarHidden = true
         
     }
     
@@ -118,7 +119,13 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
     }
     
   
+    /*
+    Searches for all the albums in the iTunes API that match
+    the search parameter.
+    */
     func searchAlbum(param:String){
+        
+        albums.removeAll()
         
         Alamofire.request(.GET, "http://itunes.apple.com/search", parameters: ["term": param, "entity": "album"]) .responseJSON { response in
             
@@ -135,8 +142,6 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
                     
                 }
                 
-                self.searchTv.reloadData()
-                
             }
             else{
                 
@@ -152,6 +157,10 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
     }
     
     
+    /*
+    Searches for all the songs in the iTunes API that match
+    the search parameter.
+    */
     func searchSong(param:String){
         
         songs.removeAll()
@@ -187,11 +196,6 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
         
     }
     
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
     // MARK: - Table view data source
 
@@ -241,6 +245,18 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
     }
 
     
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch(section){
+        case 0:
+            return "Albums"
+        case 1:
+            return "Songs"
+        default:
+            return ""
+            
+        }
+    }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if indexPath.section == 0 {
@@ -248,6 +264,7 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
             
             let cell = tableView.dequeueReusableCellWithIdentifier("albumId",
                 forIndexPath: indexPath)
+            
             
             return cell
             
@@ -273,7 +290,7 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
         
         if indexPath.section == 0 {
             
-            guard let tableViewCell = cell as? albumCell else { return }
+            let tableViewCell = cell as! albumCell
             
             tableViewCell.setCollectionViewDataSourceDelegate(self, forRow: indexPath.row)
             
