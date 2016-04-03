@@ -119,11 +119,8 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
     func searchSong(param:String){
         
         songs.removeAll()
-
         
-        let songUrl = "http://itunes.apple.com/search?term=" + param + "&entity=song"
-
-        Alamofire.request(.GET, songUrl) .responseJSON { response in
+        Alamofire.request(.GET, "http://itunes.apple.com/search", parameters: ["term": param, "entity": "song"]) .responseJSON { response in
             
             if let resultJSON = response.result.value{
                 

@@ -96,18 +96,14 @@ class musicPlayer{
     */
     func retrieveURL(song: Song, completionHandler: (result: (link: NSURL!, duration: Int!)) -> ()) -> (){
         
-        let metadata = song.name + "%20" + song.artist + "%20audio"
-        let searchArray = metadata.componentsSeparatedByString(" ")
-        let fString:String! = searchArray.joinWithSeparator("%20")
-        let url = "http://trackrapi.omardlhz.com/search?name=" + fString
+        let metadata = song.name + " " + song.artist + " audio"
         
-        Alamofire.request(.GET, url) .responseJSON { response in
+        Alamofire.request(.GET, "http://trackrapi.omardlhz.com/search", parameters: ["name": metadata]) .responseJSON { response in
             
             if let resultJSON = response.result.value{
                 
                 let urlString = resultJSON["url"] as! String
                 let url = NSURL(string: urlString)
-                
                 let duration = resultJSON["duration"] as! Int
                 
                 completionHandler(result: (link: url, duration: duration))
