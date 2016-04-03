@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import Alamofire
 
-class AlbumViewController: UIViewController {
+class AlbumViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var albumData:Album!
     var lightColor = false;
-
+    var colors:UIImageColors!
+    
+    
+    
     @IBOutlet var backView: UIView!
     @IBOutlet weak var albumCover: UIImageView!
     @IBOutlet weak var songTable: UITableView!
@@ -20,6 +24,16 @@ class AlbumViewController: UIViewController {
     @IBOutlet weak var artistLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var shuffleButton: UIButton!
+    
+    @IBAction func playAlbum(sender: AnyObject) {
+        
+        if albumData.songs.count > 0{
+            
+            musicPlayer.sharedInstance.albumToQueue(albumData.songs)
+            
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +48,7 @@ class AlbumViewController: UIViewController {
         if imageData != nil{
             
             let image = UIImage(data: imageData!)
-            let colors = image!.getColors()
+            colors = image!.getColors()
             
             albumCover.image = image!
             
@@ -62,10 +76,77 @@ class AlbumViewController: UIViewController {
             
             hideShadow()
             
+            songTable.dataSource = self
+            songTable.delegate = self
+            searchSongs(albumData.albumId)
+            
         }
         
         
     }
+    
+    func searchSongs(albumId:Int){
+        
+        Alamofire.request(.GET, "https://itunes.apple.com/lookup", parameters: ["id": albumId, "entity": "song"]) .responseJSON { response in
+            
+            if let resultJSON = response.result.value{
+                
+                for song in resultJSON["results"] as! NSMutableArray{
+                    
+                    if song["wrapperType"] as! String == "track"{
+                        
+                        let name = song["trackName"] as! String
+                        let artist = song["artistName"] as! String
+                        let artwork = song["artworkUrl100"] as! String
+                        
+                        self.albumData.songs.append(Song(name: name, artist: artist, artwork: artwork))
+                        
+                        
+                    }
+                }
+                
+                self.songTable.reloadData()
+            }
+            else{
+                
+                let errorAlert = UIAlertController(title: "Error", message: "Could not connect to server. Please check internet connection.", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                let okButton = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                errorAlert.addAction(okButton)
+                self.presentViewController(errorAlert, animated: true, completion: nil)
+                
+                
+            }
+
+        }
+        
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        musicPlayer.sharedInstance.playNow(albumData.songs[indexPath.row])
+        
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return albumData.songs.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = songTable.dequeueReusableCellWithIdentifier("songId") as! SongCell
+        
+        cell.backgroundColor = colors.backgroundColor
+        cell.nameLabel.text = albumData.songs[indexPath.row].name
+        cell.nameLabel.textColor = colors.primaryColor
+        cell.artistLabel.text = albumData.songs[indexPath.row].artist
+        cell.artistLabel.textColor = colors.secondaryColor
+        
+        return cell
+        
+    }
+    
     
     func isLightColor(color: UIColor) -> Bool
     {

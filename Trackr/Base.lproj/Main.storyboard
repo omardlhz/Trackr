@@ -271,7 +271,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wxu-D4-zcS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1408" y="305"/>
+            <point key="canvasLocation" x="1408" y="392"/>
         </scene>
         <!--Album View Controller-->
         <scene sceneID="sRP-kF-e13">
@@ -289,7 +289,7 @@
                                 <rect key="frame" x="10" y="128" width="301" height="383"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="57" id="GVk-0H-rbw">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="songId" rowHeight="57" id="GVk-0H-rbw" customClass="SongCell" customModule="Trackr" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="301" height="57"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GVk-0H-rbw" id="cSS-ta-qcj">
@@ -308,8 +308,18 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LCH-DK-BGL">
+                                                    <rect key="frame" x="244" y="3" width="49" height="49"/>
+                                                    <state key="normal" image="more"/>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="artistLabel" destination="i5s-Cf-vS8" id="F7f-cK-tSW"/>
+                                            <outlet property="nameLabel" destination="g8X-py-4Om" id="F5c-uf-Ogg"/>
+                                            <outlet property="songAction" destination="LCH-DK-BGL" id="Z4E-oo-blR"/>
+                                            <segue destination="snh-Ti-eoJ" kind="modal" id="Xea-rZ-zCx"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -339,6 +349,9 @@
                                         <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="playAlbum:" destination="TDt-B7-ylS" eventType="touchUpInside" id="TDa-iw-ZBG"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UnR-ke-dqX">
                                 <rect key="frame" x="208" y="89" width="103" height="30"/>
@@ -402,4 +415,7 @@
         <image name="nextButton" width="45" height="36"/>
         <image name="playButton" width="50" height="82"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="sNC-5f-XSV"/>
+    </inferredMetricsTieBreakers>
 </document>

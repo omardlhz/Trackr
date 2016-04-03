@@ -222,6 +222,18 @@ class musicPlayer{
         }
     }
     
+    /*
+    Adds songs of an album to the queue and
+    plays it.
+    */
+    func albumToQueue(songs:[Song]){
+        
+        songPointer = songQueue.count
+        songQueue.appendContentsOf(songs)
+        playSong(songQueue[songPointer])
+        
+    }
+    
     
     /*
     Plays song if it has been paused.
