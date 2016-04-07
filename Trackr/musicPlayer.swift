@@ -24,6 +24,7 @@ class musicPlayer{
     private var songQueue:[Song] = []
     private var playedSongs:[Int] = []
     private var songPointer:Int = 0;
+    private var loopSong:Bool = false;
     
     
     class var sharedInstance: musicPlayer {
@@ -262,6 +263,8 @@ class musicPlayer{
     
     func backQueue(){
         
+        mPlayer.seekToTime(kCMTimeZero)
+        
     }
     
     
@@ -276,6 +279,24 @@ class musicPlayer{
             songPointer += 1;
             
             playSong(songQueue[songPointer])
+            
+        }
+    }
+    
+    
+    /*
+    Triggered when loop button is tapped.
+    */
+    func loopButton(){
+        
+        if loopSong == true {
+            
+            loopSong = false
+            
+        }
+        else{
+            
+            loopSong = true
             
         }
     }
@@ -310,11 +331,10 @@ class musicPlayer{
             
             if Int(self.mPlayer.currentTime().seconds) >= self.currentSong.duration{
                 
-                mPlayer = AVPlayer()
                 timer.invalidate()
                 playedSongs.append(songPointer)
                 
-                if(songPointer + 1 <= songQueue.count){
+                if(songPointer + 1 < songQueue.count){
                     
                     songPointer++;
                     playSong(songQueue[songPointer])

@@ -78,7 +78,12 @@ class AlbumViewController: UIViewController, UITableViewDataSource, UITableViewD
             
             songTable.dataSource = self
             songTable.delegate = self
-            searchSongs(albumData.albumId)
+            
+            if albumData.songs.count == 0{
+                
+                searchSongs(albumData.albumId)
+                
+            }
             
         }
         
