@@ -47,11 +47,7 @@ class PlayerViewController: UIViewController {
     }
     
     
-    @IBAction func backButton(sender: AnyObject) {
-        
-        
-        
-    }
+    @IBOutlet weak var backButton: UIButton!
     
     
     @IBAction func forwardButton(sender: AnyObject) {
@@ -75,12 +71,20 @@ class PlayerViewController: UIViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "timeChange", name: "changeInTime", object: nil)
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: "replaySong")
+        tapGesture.numberOfTapsRequired = 1
+        
+        let doubleTapGesture = UITapGestureRecognizer(target: self, action: "backSong")
+        doubleTapGesture.numberOfTapsRequired = 2
+        
+        backButton.addGestureRecognizer(tapGesture)
+        backButton.addGestureRecognizer(doubleTapGesture)
+        
+        
     }
     
     
     override func viewWillAppear(animated: Bool) {
-        
-        updateView()
         
         let statusBar = UIApplication.sharedApplication().valueForKey("statusBarWindow")?.valueForKey("statusBar") as? UIView
         
@@ -140,6 +144,28 @@ class PlayerViewController: UIViewController {
         
         titleLabel.text = songMeta.name
         artistLabel.text = songMeta.artist
+        
+    }
+    
+    
+    /*
+    Replays current song.
+    Triggered when back button is tapped once.
+    */
+    func replaySong(){
+        
+        musicPlayer.sharedInstance.replaySong()
+        
+    }
+    
+    
+    /*
+    Plays the song previous song in Queue if any.
+    Triggered when badck button is tapped twice.
+    */
+    func backSong(){
+        
+        musicPlayer.sharedInstance.backQueue()
         
     }
     

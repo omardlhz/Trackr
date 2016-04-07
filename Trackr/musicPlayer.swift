@@ -261,9 +261,29 @@ class musicPlayer{
     }
     
     
+    /*
+    Plays the song before the current one if any.
+    Triggered when the back button is tapped twice.
+    */
     func backQueue(){
         
+        if songPointer - 1 >= 0{
+            
+            songPointer -= 1;
+            playSong(songQueue[songPointer])
+        
+        }
+    
+    }
+    
+    /*
+    Replays the current song.
+    Triggered when the back button is tapped once.
+    */
+    func replaySong(){
+        
         mPlayer.seekToTime(kCMTimeZero)
+        mPlayer.play()
         
     }
     

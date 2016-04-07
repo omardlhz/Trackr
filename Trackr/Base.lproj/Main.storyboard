@@ -245,9 +245,6 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hoq-8y-RRu">
                                 <rect key="frame" x="75" y="425" width="51" height="36"/>
                                 <state key="normal" image="backButton"/>
-                                <connections>
-                                    <action selector="backButton:" destination="snh-Ti-eoJ" eventType="touchUpInside" id="b1Y-d4-tn1"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IXj-UO-kgS">
                                 <rect key="frame" x="195" y="425" width="45" height="36"/>
@@ -261,6 +258,7 @@
                     </view>
                     <connections>
                         <outlet property="artistLabel" destination="vbm-te-V26" id="8W7-o5-hQ9"/>
+                        <outlet property="backButton" destination="Hoq-8y-RRu" id="B9Y-f2-Cbf"/>
                         <outlet property="coverImage" destination="0G5-wW-DA8" id="T9p-HO-t6d"/>
                         <outlet property="playBackLabel" destination="lyB-HS-PQo" id="pOF-a9-hbx"/>
                         <outlet property="playButton" destination="1mx-bg-eub" id="9mn-zt-dre"/>
