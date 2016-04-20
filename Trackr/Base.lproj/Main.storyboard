@@ -206,6 +206,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Si-bL-Uhq">
                                 <rect key="frame" x="270" y="28" width="30" height="30"/>
                                 <state key="normal" image="Queue"/>
+                                <connections>
+                                    <segue destination="7D9-fX-Q08" kind="modal" id="V8P-fh-fGk"/>
+                                </connections>
                             </button>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="y5S-Gx-thz">
                                 <rect key="frame" x="0.0" y="318" width="320" height="2"/>
@@ -270,6 +273,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wxu-D4-zcS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1408" y="392"/>
+        </scene>
+        <!--Queue Table View Controller-->
+        <scene sceneID="VC8-Mf-i55">
+            <objects>
+                <tableViewController id="L84-QC-3mT" customClass="QueueTableViewController" customModule="Trackr" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="jIX-uF-npe">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="28a-kv-sCS">
+                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="28a-kv-sCS" id="0Js-sH-mNl">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="L84-QC-3mT" id="o7f-su-pbr"/>
+                            <outlet property="delegate" destination="L84-QC-3mT" id="MQg-iB-UBO"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="1Rg-Rp-MV0">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="play" id="Jtm-bj-ebH">
+                            <color key="tintColor" red="1" green="0.25696904009999999" blue="0.83806236779999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="5h7-UC-crO">
+                            <color key="tintColor" red="1" green="0.25696904009999999" blue="0.83806236779999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cFx-gJ-984" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2179" y="371"/>
         </scene>
         <!--Album View Controller-->
         <scene sceneID="sRP-kF-e13">
@@ -404,16 +443,34 @@
             </objects>
             <point key="canvasLocation" x="402" y="-17"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="6ek-xn-FPd">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7D9-fX-Q08" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xbB-FC-rhu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="L84-QC-3mT" kind="relationship" relationship="rootViewController" id="MJQ-z3-hqZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GgG-UY-Cjn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1779" y="392"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Queue" width="33" height="32"/>
         <image name="backButton" width="45" height="36"/>
         <image name="cancel" width="30" height="30"/>
-        <image name="more" width="16" height="16"/>
+        <image name="more" width="18" height="18"/>
         <image name="nextButton" width="45" height="36"/>
         <image name="playButton" width="50" height="82"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sNC-5f-XSV"/>
+        <segue reference="Xea-rZ-zCx"/>
     </inferredMetricsTieBreakers>
 </document>
