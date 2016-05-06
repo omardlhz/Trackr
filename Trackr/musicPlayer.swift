@@ -294,6 +294,8 @@ class musicPlayer{
         mPlayer.seekToTime(kCMTimeZero)
         mPlayer.play()
         
+        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "timeChange", userInfo: nil, repeats: true)
+        
     }
     
     

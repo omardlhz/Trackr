@@ -30,6 +30,9 @@ class PlayerViewController: UIViewController {
     
     @IBOutlet weak var playButton: UIButton!
     
+    
+    
+    
     @IBAction func playButton(sender: AnyObject) {
         
         if songPlaying == false{
