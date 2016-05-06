@@ -224,6 +224,15 @@ class musicPlayer{
     }
     
     /*
+    
+    */
+    func getQueue() -> [Song]{
+        
+        return songQueue
+        
+    }
+    
+    /*
     Adds songs of an album to the queue and
     plays it.
     */
@@ -323,6 +332,11 @@ class musicPlayer{
     
     
     
+    func currentPointer() -> Int{
+        
+        return songPointer
+    }
+    
     /*
     Returns the player's currentTime and song
     duration.
@@ -353,13 +367,7 @@ class musicPlayer{
                 
                 timer.invalidate()
                 playedSongs.append(songPointer)
-                
-                if(songPointer + 1 < songQueue.count){
-                    
-                    songPointer++;
-                    playSong(songQueue[songPointer])
-                    
-                }
+                forwardQueue()
             }
         }
     }

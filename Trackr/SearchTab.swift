@@ -131,14 +131,19 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
             
             if let resultJSON = response.result.value{
                 
-                for song in resultJSON["results"] as! NSMutableArray{
+                
+                if resultJSON["resultCount"] as! Int != 0 {
                     
-                    let albumId = song["collectionId"] as! Int
-                    let name = song["collectionName"] as! String
-                    let artist = song["artistName"] as! String
-                    let artwork = song["artworkUrl100"] as! String
-                    
-                    self.albums.append(Album(albumId: albumId, name: name, artist: artist, artwork: artwork))
+                    for song in resultJSON["results"] as! NSMutableArray{
+                        
+                        let albumId = song["collectionId"] as! Int
+                        let name = song["collectionName"] as! String
+                        let artist = song["artistName"] as! String
+                        let artwork = song["artworkUrl100"] as! String
+                        
+                        self.albums.append(Album(albumId: albumId, name: name, artist: artist, artwork: artwork))
+                        
+                    }
                     
                 }
                 
@@ -169,13 +174,19 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
             
             if let resultJSON = response.result.value{
                 
-                for song in resultJSON["results"] as! NSMutableArray{
+                if resultJSON["resultCount"] as! Int != 0 {
                     
-                    let name = song["trackName"] as! String
-                    let artist = song["artistName"] as! String
-                    let artwork = song["artworkUrl100"] as! String
+                    for song in resultJSON["results"] as! NSMutableArray{
+                        
+                        let name = song["trackName"] as! String
+                        let artist = song["artistName"] as! String
+                        let artwork = song["artworkUrl100"] as! String
+                        
+                        self.songs.append(Song(name: name, artist: artist, artwork: artwork))
+                        
+                    }
                     
-                    self.songs.append(Song(name: name, artist: artist, artwork: artwork))
+                    
                     
                 }
                 
@@ -204,20 +215,35 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
         
         var sections = 0
         
-        if songs.count > 0{
+        if albums.count != 0 {
             
-            sections = 3
+            sections++
             
         }
         
+        if songs.count != 0{
+            
+            sections++
+            
+        }
+    
         return sections
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        if indexPath.section == 0 {
+        if albums.count != 0 {
             
-            return 154
+            if indexPath.section == 0 {
+                
+                return 154
+                
+            }
+            else{
+                
+                return 55
+                
+            }
             
         }
         else{
@@ -232,34 +258,66 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        if section == 2{
+        
+        if albums.count != 0{
             
-            return songs.count
+            if section == 1{
+                
+                print("here")
+                return songs.count
+                
+            }
+            else{
+                
+                return 1
+                
+            }
             
         }
         else{
             
-            return 1
+            return songs.count
             
         }
+        
     }
 
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch(section){
-        case 0:
-            return "Albums"
-        case 1:
-            return "Songs"
-        default:
-            return ""
+      
+        if albums.count != 0 {
+            
+            if section == 0 {
+                
+                return "Albums"
+                
+            }
+            else{
+                
+                return "Songs"
+                
+            }
             
         }
+        else{
+            
+            if section == 0 {
+                
+                return "Songs"
+                
+            }
+            else{
+                
+                return ""
+                
+            }
+        }
+        
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        if indexPath.section == 0 {
+        if indexPath.section == 0 && albums.count != 0{
             
             
             let cell = tableView.dequeueReusableCellWithIdentifier("albumId",
@@ -287,7 +345,7 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         
-        if indexPath.section == 0 {
+        if indexPath.section == 0 && albums.count != 0 {
             
             let tableViewCell = cell as! albumCell
             

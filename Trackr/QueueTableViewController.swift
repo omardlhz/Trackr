@@ -9,7 +9,32 @@
 import UIKit
 
 class QueueTableViewController: UITableViewController {
+    
+    @IBOutlet var queueView: UITableView!
+    
+    var songQueue:[Song] = [Song]()
 
+    @IBAction func playerButton(sender: AnyObject) {
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+
+    @IBAction func editButton(sender: AnyObject) {
+        
+        if(queueView.editing == true){
+            
+            queueView.editing = false;
+            
+        }
+        else{
+            
+            queueView.editing = true;
+            
+        }
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,8 +43,17 @@ class QueueTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        
     }
 
+    override func viewWillAppear(animated: Bool) {
+        
+        songQueue = musicPlayer.sharedInstance.getQueue()
+        
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -29,23 +63,39 @@ class QueueTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
+    }
+    
+    
+    override func setEditing(editing: Bool, animated: Bool) {
+        print("Editing")
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return songQueue.count
+    }
+    
+    
+    func showAction(sender:UIButton){
+        
+        let alertView = showAlert(songQueue[sender.tag])
+        
+        self.presentViewController(alertView, animated: true, completion: nil)
+        
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCellWithIdentifier("queueCell", forIndexPath: indexPath) as! SongCell
+        
+        cell.nameLabel.text = songQueue[indexPath.row].name
+        cell.artistLabel.text = songQueue[indexPath.row].artist
+        cell.songAction.tag = indexPath.row
+        cell.songAction.addTarget(self, action: "showAction:", forControlEvents: UIControlEvents.TouchUpInside)
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

@@ -2,7 +2,6 @@
   PlayerViewController.swift
   Trackr
 
-
   Created by Omar Dlhz on 3/26/16.
   Copyright © 2016 Omar De La Hoz. All rights reserved.
 */
