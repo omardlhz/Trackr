@@ -263,7 +263,6 @@ class SearchTab: UITableViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDe
             
             if section == 1{
                 
-                print("here")
                 return songs.count
                 
             }

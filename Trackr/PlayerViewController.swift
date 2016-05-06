@@ -28,10 +28,17 @@ class PlayerViewController: UIViewController {
     
     @IBOutlet weak var remainTimeLabel: UILabel!
     
+    @IBOutlet weak var replayButton: UIButton!
+    
+    @IBAction func replayButton(sender: AnyObject) {
+        
+        musicPlayer.sharedInstance.loopButton()
+        
+        
+    }
+    
+    
     @IBOutlet weak var playButton: UIButton!
-    
-    
-    
     
     @IBAction func playButton(sender: AnyObject) {
         
@@ -71,6 +78,10 @@ class PlayerViewController: UIViewController {
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "isNotPlaying", name: "pauseplaying", object: nil)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "notLooping", name: "notReplaying", object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "isLooping", name: "isReplaying", object: nil)
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "timeChange", name: "changeInTime", object: nil)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: "replaySong")
@@ -93,12 +104,6 @@ class PlayerViewController: UIViewController {
         statusBar!.backgroundColor = nil
         
         
-    }
-    
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
@@ -126,6 +131,30 @@ class PlayerViewController: UIViewController {
         playButton.setImage(UIImage(named: "playButton"), forState: .Normal)
         
     }
+    
+    /*
+    Sets the image of the replayButton to onReplay
+    when replaying is activated.
+    Gets triggered by isReplaying notification
+    */
+    func isLooping(){
+        
+        replayButton.setImage(UIImage(named: "onReplay"), forState: .Normal)
+        
+    }
+    
+    
+    /*
+    Sets the image of the replayButton to offReplay
+    when replaying is activated.
+    Gets triggered by notReplaying notification
+    */
+    func notLooping(){
+        
+        replayButton.setImage(UIImage(named: "offReplay"), forState: .Normal)
+        
+    }
+    
     
     /*
     Adds the songs metadata to the view.

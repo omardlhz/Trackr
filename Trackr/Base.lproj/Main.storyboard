@@ -256,6 +256,13 @@
                                     <action selector="forwardButton:" destination="snh-Ti-eoJ" eventType="touchUpInside" id="NyK-IR-4Ma"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aFu-AY-5kC">
+                                <rect key="frame" x="147" y="518" width="27" height="30"/>
+                                <state key="normal" image="offReplay"/>
+                                <connections>
+                                    <action selector="replayButton:" destination="snh-Ti-eoJ" eventType="touchUpInside" id="6Hh-9b-RV2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -264,8 +271,9 @@
                         <outlet property="backButton" destination="Hoq-8y-RRu" id="B9Y-f2-Cbf"/>
                         <outlet property="coverImage" destination="0G5-wW-DA8" id="T9p-HO-t6d"/>
                         <outlet property="playBackLabel" destination="lyB-HS-PQo" id="pOF-a9-hbx"/>
-                        <outlet property="playButton" destination="1mx-bg-eub" id="9mn-zt-dre"/>
+                        <outlet property="playButton" destination="1mx-bg-eub" id="mwg-z2-ofS"/>
                         <outlet property="remainTimeLabel" destination="XN2-kT-ICi" id="trb-oX-Bd1"/>
+                        <outlet property="replayButton" destination="aFu-AY-5kC" id="UIG-Cr-5oh"/>
                         <outlet property="songPlayback" destination="y5S-Gx-thz" id="rXW-4l-fd9"/>
                         <outlet property="titleLabel" destination="Ryl-mc-njK" id="ByW-Db-gR0"/>
                     </connections>
@@ -500,6 +508,7 @@
         <image name="cancel" width="30" height="30"/>
         <image name="more" width="18" height="18"/>
         <image name="nextButton" width="45" height="36"/>
+        <image name="offReplay" width="27" height="30"/>
         <image name="playButton" width="50" height="82"/>
     </resources>
     <inferredMetricsTieBreakers>

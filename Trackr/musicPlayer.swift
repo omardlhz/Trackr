@@ -224,7 +224,7 @@ class musicPlayer{
     }
     
     /*
-    
+    Returns the current song queue.
     */
     func getQueue() -> [Song]{
         
@@ -285,6 +285,7 @@ class musicPlayer{
     
     }
     
+    
     /*
     Replays the current song.
     Triggered when the back button is tapped once.
@@ -301,7 +302,8 @@ class musicPlayer{
     
     /*
     Triggered when next song button gets clicked.
-    If there are no songs in queue, nothing happens.
+    If there are no songs in queue, the playing session
+    is stopped.
     */
     func forwardQueue(){
         
@@ -310,6 +312,12 @@ class musicPlayer{
             songPointer += 1;
             
             playSong(songQueue[songPointer])
+            
+        }
+        else{
+            
+            replaySong()
+            pausePlaying()
             
         }
     }
@@ -322,10 +330,14 @@ class musicPlayer{
         
         if loopSong == true {
             
+            NSNotificationCenter.defaultCenter().postNotificationName("notReplaying", object: nil)
+            
             loopSong = false
             
         }
         else{
+            
+            NSNotificationCenter.defaultCenter().postNotificationName("isReplaying", object: nil)
             
             loopSong = true
             
@@ -368,8 +380,19 @@ class musicPlayer{
             if Int(self.mPlayer.currentTime().seconds) >= self.currentSong.duration{
                 
                 timer.invalidate()
-                playedSongs.append(songPointer)
-                forwardQueue()
+                
+                if !loopSong {
+                    
+                    playedSongs.append(songPointer)
+                    forwardQueue()
+                    
+                }
+                else{
+                    
+                    replaySong()
+                    
+                }
+                
             }
         }
     }
