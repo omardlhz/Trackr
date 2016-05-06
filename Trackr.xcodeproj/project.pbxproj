@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		546437EF1B034DDE8129907B /* Pods_TrackrTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4F8173F2AAA2EE30A36A8DC /* Pods_TrackrTests.framework */; };
-		9DB88DF2EC4D80429D520B7D /* Pods_Trackr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A6ED0BA21F17165B514724 /* Pods_Trackr.framework */; };
+		19151C9C89EA6535341669BB /* Pods_TrackrTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13161122124CCDDB2B4A6D35 /* Pods_TrackrTests.framework */; };
 		A80056EC1C9CA4DE00CDAECF /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = A80056EB1C9CA4DE00CDAECF /* UIScrollView+EmptyDataSet.m */; };
 		A80056EE1C9CA53000CDAECF /* SearchTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = A80056ED1C9CA53000CDAECF /* SearchTab.swift */; };
 		A805B74B1CB0FF2A0033FED6 /* albumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A805B74A1CB0FF2A0033FED6 /* albumCell.swift */; };
@@ -29,8 +28,8 @@
 		A8E8A19D1CA1E58800264A27 /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E8A19C1CA1E58800264A27 /* SongCell.swift */; };
 		A8F60C311CA6606D00B97651 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F60C301CA6606D00B97651 /* PlayerViewController.swift */; };
 		A8F9BEA51C9CCFC1006D1DB9 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A8F9BEA41C9CCFC1006D1DB9 /* .gitignore */; };
-		B4853A1B79468B2787D32B04 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BC9A5403E1E4406D0D4B363 /* Pods.framework */; };
-		FF92552BCEAF7985A4E9D7EC /* Pods_TrackrUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A285BE3B757172A9D5A72D /* Pods_TrackrUITests.framework */; };
+		D22B431D4B66640DCAA60799 /* Pods_TrackrUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF7F69A5CBC85C422AC44A1B /* Pods_TrackrUITests.framework */; };
+		DC72E1FD953C7610B00FD360 /* Pods_Trackr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C50352BD5796FE6A364073D /* Pods_Trackr.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,12 +51,8 @@
 
 /* Begin PBXFileReference section */
 		0BC9A5403E1E4406D0D4B363 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		17A285BE3B757172A9D5A72D /* Pods_TrackrUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrackrUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		331591E02745524DB98964DC /* Pods-Trackr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trackr.release.xcconfig"; path = "Pods/Target Support Files/Pods-Trackr/Pods-Trackr.release.xcconfig"; sourceTree = "<group>"; };
-		4AEA3197480C9DCFF117F4F0 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		55830205C9F188C22AB7B832 /* Pods-TrackrUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackrUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TrackrUITests/Pods-TrackrUITests.release.xcconfig"; sourceTree = "<group>"; };
-		97A77A219D2F01E45BA9F3A3 /* Pods-TrackrTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackrTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TrackrTests/Pods-TrackrTests.release.xcconfig"; sourceTree = "<group>"; };
-		A3A7AA8FE2F09F5CCFD5EC83 /* Pods-Trackr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trackr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Trackr/Pods-Trackr.debug.xcconfig"; sourceTree = "<group>"; };
+		13161122124CCDDB2B4A6D35 /* Pods_TrackrTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrackrTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C50352BD5796FE6A364073D /* Pods_Trackr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Trackr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A80056E91C9CA4DE00CDAECF /* Trackr-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Trackr-Bridging-Header.h"; sourceTree = "<group>"; };
 		A80056EA1C9CA4DE00CDAECF /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
 		A80056EB1C9CA4DE00CDAECF /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
@@ -86,11 +81,13 @@
 		A8E8A19C1CA1E58800264A27 /* SongCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
 		A8F60C301CA6606D00B97651 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		A8F9BEA41C9CCFC1006D1DB9 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		C93EA49A17B05E3D3B1E41F3 /* Pods-TrackrTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackrTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TrackrTests/Pods-TrackrTests.debug.xcconfig"; sourceTree = "<group>"; };
-		CF7E880C5B48FEF7160B11C7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		D4F8173F2AAA2EE30A36A8DC /* Pods_TrackrTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrackrTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E1A6ED0BA21F17165B514724 /* Pods_Trackr.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Trackr.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FBB09DEA4CD23C220C8E1CF4 /* Pods-TrackrUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackrUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TrackrUITests/Pods-TrackrUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		AF7F69A5CBC85C422AC44A1B /* Pods_TrackrUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrackrUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9FBC44E85B76D1DFF502275 /* Pods-TrackrTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackrTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TrackrTests/Pods-TrackrTests.release.xcconfig"; sourceTree = "<group>"; };
+		C2972F010012E5DE73341F8D /* Pods-TrackrUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackrUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TrackrUITests/Pods-TrackrUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C46B45D93AE71107D0473271 /* Pods-Trackr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trackr.release.xcconfig"; path = "Pods/Target Support Files/Pods-Trackr/Pods-Trackr.release.xcconfig"; sourceTree = "<group>"; };
+		C7B02A28A5CC86E495353590 /* Pods-TrackrUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackrUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TrackrUITests/Pods-TrackrUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		DE7ECFA17D0947A5497A7170 /* Pods-Trackr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Trackr.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Trackr/Pods-Trackr.debug.xcconfig"; sourceTree = "<group>"; };
+		F1275FF906A5F9EBDAD1429E /* Pods-TrackrTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrackrTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TrackrTests/Pods-TrackrTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,8 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4853A1B79468B2787D32B04 /* Pods.framework in Frameworks */,
-				9DB88DF2EC4D80429D520B7D /* Pods_Trackr.framework in Frameworks */,
+				DC72E1FD953C7610B00FD360 /* Pods_Trackr.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,7 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				546437EF1B034DDE8129907B /* Pods_TrackrTests.framework in Frameworks */,
+				19151C9C89EA6535341669BB /* Pods_TrackrTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,28 +111,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF92552BCEAF7985A4E9D7EC /* Pods_TrackrUITests.framework in Frameworks */,
+				D22B431D4B66640DCAA60799 /* Pods_TrackrUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5F8AC4AA21EFA08BF1DCFF2E /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				4AEA3197480C9DCFF117F4F0 /* Pods.debug.xcconfig */,
-				CF7E880C5B48FEF7160B11C7 /* Pods.release.xcconfig */,
-				A3A7AA8FE2F09F5CCFD5EC83 /* Pods-Trackr.debug.xcconfig */,
-				331591E02745524DB98964DC /* Pods-Trackr.release.xcconfig */,
-				C93EA49A17B05E3D3B1E41F3 /* Pods-TrackrTests.debug.xcconfig */,
-				97A77A219D2F01E45BA9F3A3 /* Pods-TrackrTests.release.xcconfig */,
-				FBB09DEA4CD23C220C8E1CF4 /* Pods-TrackrUITests.debug.xcconfig */,
-				55830205C9F188C22AB7B832 /* Pods-TrackrUITests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		A89FA48E1C9C682300FE8C75 = {
 			isa = PBXGroup;
 			children = (
@@ -145,8 +126,8 @@
 				A89FA4B01C9C682300FE8C75 /* TrackrTests */,
 				A89FA4BB1C9C682300FE8C75 /* TrackrUITests */,
 				A89FA4981C9C682300FE8C75 /* Products */,
-				5F8AC4AA21EFA08BF1DCFF2E /* Pods */,
 				E375AD9832DC10177D02BDDE /* Frameworks */,
+				D4DBA77B6867FA2062208B73 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -205,13 +186,26 @@
 			path = TrackrUITests;
 			sourceTree = "<group>";
 		};
+		D4DBA77B6867FA2062208B73 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DE7ECFA17D0947A5497A7170 /* Pods-Trackr.debug.xcconfig */,
+				C46B45D93AE71107D0473271 /* Pods-Trackr.release.xcconfig */,
+				F1275FF906A5F9EBDAD1429E /* Pods-TrackrTests.debug.xcconfig */,
+				B9FBC44E85B76D1DFF502275 /* Pods-TrackrTests.release.xcconfig */,
+				C7B02A28A5CC86E495353590 /* Pods-TrackrUITests.debug.xcconfig */,
+				C2972F010012E5DE73341F8D /* Pods-TrackrUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E375AD9832DC10177D02BDDE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				0BC9A5403E1E4406D0D4B363 /* Pods.framework */,
-				E1A6ED0BA21F17165B514724 /* Pods_Trackr.framework */,
-				D4F8173F2AAA2EE30A36A8DC /* Pods_TrackrTests.framework */,
-				17A285BE3B757172A9D5A72D /* Pods_TrackrUITests.framework */,
+				9C50352BD5796FE6A364073D /* Pods_Trackr.framework */,
+				13161122124CCDDB2B4A6D35 /* Pods_TrackrTests.framework */,
+				AF7F69A5CBC85C422AC44A1B /* Pods_TrackrUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -638,13 +632,14 @@
 		};
 		A89FA4C21C9C682300FE8C75 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A3A7AA8FE2F09F5CCFD5EC83 /* Pods-Trackr.debug.xcconfig */;
+			baseConfigurationReference = DE7ECFA17D0947A5497A7170 /* Pods-Trackr.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Trackr/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = dlhz.Trackr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Trackr/Trackr-Bridging-Header.h";
@@ -655,13 +650,14 @@
 		};
 		A89FA4C31C9C682300FE8C75 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 331591E02745524DB98964DC /* Pods-Trackr.release.xcconfig */;
+			baseConfigurationReference = C46B45D93AE71107D0473271 /* Pods-Trackr.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Trackr/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = dlhz.Trackr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Trackr/Trackr-Bridging-Header.h";
@@ -671,7 +667,7 @@
 		};
 		A89FA4C51C9C682300FE8C75 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C93EA49A17B05E3D3B1E41F3 /* Pods-TrackrTests.debug.xcconfig */;
+			baseConfigurationReference = F1275FF906A5F9EBDAD1429E /* Pods-TrackrTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = TrackrTests/Info.plist;
@@ -684,7 +680,7 @@
 		};
 		A89FA4C61C9C682300FE8C75 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 97A77A219D2F01E45BA9F3A3 /* Pods-TrackrTests.release.xcconfig */;
+			baseConfigurationReference = B9FBC44E85B76D1DFF502275 /* Pods-TrackrTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = TrackrTests/Info.plist;
@@ -697,7 +693,7 @@
 		};
 		A89FA4C81C9C682300FE8C75 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FBB09DEA4CD23C220C8E1CF4 /* Pods-TrackrUITests.debug.xcconfig */;
+			baseConfigurationReference = C7B02A28A5CC86E495353590 /* Pods-TrackrUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = TrackrUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -710,7 +706,7 @@
 		};
 		A89FA4C91C9C682300FE8C75 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 55830205C9F188C22AB7B832 /* Pods-TrackrUITests.release.xcconfig */;
+			baseConfigurationReference = C2972F010012E5DE73341F8D /* Pods-TrackrUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = TrackrUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
