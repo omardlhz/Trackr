@@ -37,6 +37,15 @@ class PlayerViewController: UIViewController {
         
     }
     
+    @IBOutlet weak var shuffleButton: UIButton!
+    
+    @IBAction func shuffleButton(sender: AnyObject) {
+        
+        musicPlayer.sharedInstance.shuffleButton()
+        
+    }
+    
+    
     
     @IBOutlet weak var playButton: UIButton!
     
@@ -81,6 +90,10 @@ class PlayerViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "notLooping", name: "notReplaying", object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "isLooping", name: "isReplaying", object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "isShuffle", name: "isShuffle", object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "notShuffle", name: "notShuffle", object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "timeChange", name: "changeInTime", object: nil)
         
@@ -146,12 +159,37 @@ class PlayerViewController: UIViewController {
     
     /*
     Sets the image of the replayButton to offReplay
-    when replaying is activated.
+    when replaying is deactivated.
     Gets triggered by notReplaying notification
     */
     func notLooping(){
         
         replayButton.setImage(UIImage(named: "offReplay"), forState: .Normal)
+        
+    }
+    
+    /*
+    Sets the image of the shuffleButton to onShuffle
+    when shuffling is activated.
+    Gets triggered by isShuffle notification
+    */
+    func isShuffle(){
+        
+        
+        shuffleButton.setImage(UIImage(named: "onShuffle"), forState: .Normal)
+        
+    }
+    
+    
+    /*
+    Sets the image of the shuffleButton to offShuffle
+    when shuffling is deactivated.
+    Gets triggered by notShuffle notification
+    */
+    func notShuffle(){
+        
+        
+        shuffleButton.setImage(UIImage(named: "offShuffle"), forState: .Normal)
         
     }
     

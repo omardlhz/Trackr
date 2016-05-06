@@ -259,6 +259,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uPg-0j-yq4">
                                 <rect key="frame" x="210" y="518" width="30" height="30"/>
                                 <state key="normal" image="offShuffle"/>
+                                <connections>
+                                    <action selector="shuffleButton:" destination="snh-Ti-eoJ" eventType="touchUpInside" id="ll4-R8-FqV"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aFu-AY-5kC">
                                 <rect key="frame" x="147" y="518" width="27" height="30"/>
@@ -278,6 +281,7 @@
                         <outlet property="playButton" destination="1mx-bg-eub" id="mwg-z2-ofS"/>
                         <outlet property="remainTimeLabel" destination="XN2-kT-ICi" id="trb-oX-Bd1"/>
                         <outlet property="replayButton" destination="aFu-AY-5kC" id="UIG-Cr-5oh"/>
+                        <outlet property="shuffleButton" destination="uPg-0j-yq4" id="59a-ku-6d0"/>
                         <outlet property="songPlayback" destination="y5S-Gx-thz" id="rXW-4l-fd9"/>
                         <outlet property="titleLabel" destination="Ryl-mc-njK" id="ByW-Db-gR0"/>
                     </connections>

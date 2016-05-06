@@ -22,9 +22,10 @@ class musicPlayer{
     private var timer:NSTimer!
     private var currentTime:Double = 0
     private var songQueue:[Song] = []
-    private var playedSongs:[Int] = []
-    private var songPointer:Int = 0;
-    private var loopSong:Bool = false;
+    private var songPointer:Int = 0
+    private var loopSong:Bool = false
+    private var shuffle:Bool = false
+    private var songsPlayed:[String] = []
     
     
     class var sharedInstance: musicPlayer {
@@ -266,7 +267,7 @@ class musicPlayer{
         NSNotificationCenter.defaultCenter().postNotificationName("pauseplaying", object: nil)
         
         mPlayer.pause()
-        
+      
     }
     
     
@@ -307,10 +308,16 @@ class musicPlayer{
     */
     func forwardQueue(){
         
-        if songPointer + 1 < songQueue.count{
+        if songPointer + 1 < songQueue.count && !shuffle{
             
             songPointer += 1;
             
+            playSong(songQueue[songPointer])
+            
+        }
+        else if shuffle{
+            
+            songPointer = shuffleSong()
             playSong(songQueue[songPointer])
             
         }
@@ -345,11 +352,57 @@ class musicPlayer{
     }
     
     
+    /*
+    Generates random integers between the range of the
+    size of songQueue with the condition that the
+    song at index random integer in songQueue
+    hasnt played yet.
     
+    return: a random integer.
+    */
+    func shuffleSong() -> Int {
+        
+        var randomNumber : Int
+        repeat {
+            randomNumber = Int(arc4random_uniform(UInt32(songQueue.count)))
+        } while songsPlayed.contains(songQueue[randomNumber].name)
+        
+        songsPlayed.append(songQueue[randomNumber].name)
+        
+        return randomNumber
+        
+    }
+    
+    
+    /*
+    Changes the status of the song shuffling.
+    Triggered when the shuffle button is pressed.
+    */
+    func shuffleButton(){
+        
+        if shuffle {
+            
+            shuffle = false
+            NSNotificationCenter.defaultCenter().postNotificationName("notShuffle", object: nil)
+            
+        }
+        else{
+            
+            shuffle = true
+            NSNotificationCenter.defaultCenter().postNotificationName("isShuffle", object: nil)
+            
+        }
+    }
+    
+    
+    /*
+    Returns the current song pointer.
+    */
     func currentPointer() -> Int{
         
         return songPointer
     }
+    
     
     /*
     Returns the player's currentTime and song
@@ -383,7 +436,6 @@ class musicPlayer{
                 
                 if !loopSong {
                     
-                    playedSongs.append(songPointer)
                     forwardQueue()
                     
                 }
