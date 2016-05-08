@@ -396,6 +396,19 @@ class musicPlayer{
     
     
     /*
+    Updates the AVPlayers time when user moves
+    the slider.
+    */
+    func seekToTime(progress:Double){
+        
+        let seconds = progress * Double(currentSong.duration)
+        let newTime = CMTimeMakeWithSeconds(seconds, mPlayer.currentTime().timescale)
+        mPlayer.seekToTime(newTime)
+        
+    }
+    
+    
+    /*
     Returns the current song pointer.
     */
     func currentPointer() -> Int{

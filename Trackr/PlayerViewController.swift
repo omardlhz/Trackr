@@ -21,8 +21,16 @@ class PlayerViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var artistLabel: UILabel!
+        
+    @IBOutlet weak var songSlider: UISlider!
     
-    @IBOutlet weak var songPlayback: UIProgressView!
+    @IBAction func songSlider(sender: AnyObject) {
+        
+        musicPlayer.sharedInstance.seekToTime(Float64(songSlider.value))
+        
+    }
+    
+    
     
     @IBOutlet weak var playBackLabel: UILabel!
     
@@ -199,7 +207,7 @@ class PlayerViewController: UIViewController {
     */
     func updateView(){
         
-        songPlayback.progress = 0
+        songSlider.setValue(0, animated: false)
         
         let songMeta = musicPlayer.sharedInstance.getSong()
         
@@ -255,7 +263,8 @@ class PlayerViewController: UIViewController {
         remainTimeLabel.text = "-" + String(format: "%02d:%02d", rM, rS)
         
         let progress = Float(playerTime.current / playerTime.duration)
-        songPlayback.progress = progress
+        
+        songSlider.setValue(progress, animated: true)
         
     }
     
