@@ -68,7 +68,7 @@ public class YoutubeParser: NSObject{
     
     static let infoURL = "http://www.youtube.com/get_video_info?video_id="
     static var userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.79 Safari/537.4"
-    static let YTKey = "AIzaSyD7FSFPxgIqpy-vEZ74FF89vNsjnRyzgw8"
+    static let YTKey = "" //Youtube API V3 Key
     
     
     /**
