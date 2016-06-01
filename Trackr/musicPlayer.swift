@@ -66,15 +66,17 @@ class musicPlayer{
         
         if(song.adUrl == nil){
             
-            retrieveURL(song) { (result) in
+            let keyword = song.name + " " + song.artist + " audio"
+            
+            
+            YoutubeParser.searchTopResult(keyword) { (videoID) in
                 
-                if result.link != nil{
-                    
-                    self.mPlayer = AVPlayer(URL: result.link)
-                    self.currentSong.duration = result.duration
-                    self.mPlayer.play()
-                    NSNotificationCenter.defaultCenter().postNotificationName("songplaying", object: nil)
-                }
+                let info = YoutubeParser.parseById(videoID)
+                let url = info!["url"] as! String
+                print(url)
+                self.mPlayer = AVPlayer(URL: NSURL(string: url)!)
+                self.mPlayer.play()
+                
             }
         }
         else{

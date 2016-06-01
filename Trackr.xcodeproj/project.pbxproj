@@ -16,6 +16,7 @@
 		A805B7511CB120050033FED6 /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A805B7501CB120050033FED6 /* UIImageColors.swift */; };
 		A805B7531CB1206F0033FED6 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A805B7521CB1206F0033FED6 /* AlbumViewController.swift */; };
 		A81B094B1CA4830F00E251AD /* musicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A81B094A1CA4830F00E251AD /* musicPlayer.swift */; };
+		A84E402D1CFE708B00CB7B26 /* YoutubeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84E402C1CFE708B00CB7B26 /* YoutubeParser.swift */; };
 		A883D2781CC71C9B0078043F /* QueueTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A883D2771CC71C9B0078043F /* QueueTableViewController.swift */; };
 		A89FA49B1C9C682300FE8C75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89FA49A1C9C682300FE8C75 /* AppDelegate.swift */; };
 		A89FA4A21C9C682300FE8C75 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A89FA4A01C9C682300FE8C75 /* Main.storyboard */; };
@@ -63,6 +64,7 @@
 		A805B7501CB120050033FED6 /* UIImageColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageColors.swift; sourceTree = "<group>"; };
 		A805B7521CB1206F0033FED6 /* AlbumViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		A81B094A1CA4830F00E251AD /* musicPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = musicPlayer.swift; sourceTree = "<group>"; };
+		A84E402C1CFE708B00CB7B26 /* YoutubeParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeParser.swift; sourceTree = "<group>"; };
 		A883D2771CC71C9B0078043F /* QueueTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueTableViewController.swift; sourceTree = "<group>"; };
 		A89FA4971C9C682300FE8C75 /* Trackr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trackr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A89FA49A1C9C682300FE8C75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				A805B74E1CB1057F0033FED6 /* albumCV.swift */,
 				A805B7521CB1206F0033FED6 /* AlbumViewController.swift */,
 				A883D2771CC71C9B0078043F /* QueueTableViewController.swift */,
+				A84E402C1CFE708B00CB7B26 /* YoutubeParser.swift */,
 			);
 			path = Trackr;
 			sourceTree = "<group>";
@@ -484,6 +487,7 @@
 				A805B7531CB1206F0033FED6 /* AlbumViewController.swift in Sources */,
 				A805B74B1CB0FF2A0033FED6 /* albumCell.swift in Sources */,
 				A805B74F1CB1057F0033FED6 /* albumCV.swift in Sources */,
+				A84E402D1CFE708B00CB7B26 /* YoutubeParser.swift in Sources */,
 				A80056EC1C9CA4DE00CDAECF /* UIScrollView+EmptyDataSet.m in Sources */,
 				A8A59B791CB071E9004B1C2D /* MoreAlertController.swift in Sources */,
 				A883D2781CC71C9B0078043F /* QueueTableViewController.swift in Sources */,

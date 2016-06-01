@@ -18,8 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // Change selected tab item color to pink.
-        
-        
         UITabBar.appearance().tintColor = UIColor(red:0.9, green:0.27, blue:0.52, alpha:1.0);
         
         
